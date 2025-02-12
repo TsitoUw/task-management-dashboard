@@ -1,4 +1,23 @@
-# React + TypeScript + Vite
+# Solution to Task Management Dashboard
+
+This is my take on the test !
+
+## Installing dependencies
+
+Use this 'cause I use canary version of shadcn
+
+``` bash
+npm install --force
+```
+
+## Result at
+
+The website url [localy](http://localhost:5173/)
+
+The website url [live](https://tasks.tsitohaina.dev)
+
+
+## React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
