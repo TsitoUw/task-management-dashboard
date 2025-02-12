@@ -6,30 +6,11 @@ import { toast } from "sonner";
 import { Checkbox } from "./ui/checkbox";
 import { Button } from "./ui/button";
 
-const TASKS_MAX_LENGTH = 200;
-
 const Task = memo(({ id, completed, title }: Task) => {
     const dispatch = useDispatch();
     const handleToggle = useCallback(async () => {
-        if (id > TASKS_MAX_LENGTH) {
-            dispatch(taskSlice.actions.toggleTask(id));
-            return;
-        }
-        try {
-            dispatch(taskSlice.actions.toggleTask(id));
-            await taskService.updateTask(id, {
-                completed: !completed,
-            });
-        } catch (error) {
-            // change back the layout change on error,
-            // this simulate optimistic render
-            dispatch(taskSlice.actions.toggleTask(id));
-            console.error(error);
-            toast.error(
-                "La mise à jour de la tâche a échoué ! (puisque l'API est simulée, mais l'interface utilisateur a changé)"
-            );
-        }
-    }, [dispatch, id, completed]);
+        dispatch(taskSlice.actions.toggleTask(id));
+    }, [dispatch, id]);
     const handleDelete = useCallback(async () => {
         try {
             await taskService.deleteTask(id);
