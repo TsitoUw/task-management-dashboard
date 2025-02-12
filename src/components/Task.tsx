@@ -11,6 +11,7 @@ const Task = memo(({ id, completed, title }: Task) => {
     const handleDelete = useCallback(() => {
         dispatch(taskSlice.actions.removeTask(id));
     }, [dispatch, id]);
+    
     return (
         <div
             className={`flex items-center justify-between p-4 mb-2 border rounded ${

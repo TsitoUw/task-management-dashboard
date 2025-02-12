@@ -1,14 +1,17 @@
 import { RootState } from "@/store";
 import { taskSlice } from "@/store/taskSlice";
 import { TaskState } from "@/types/task";
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 function TaskFilter() {
     const dispatch = useDispatch();
     const currentFilter = useSelector((state: RootState) => state.tasks.filter);
-
+    const handleCompleteAll = useCallback(() => {
+        dispatch(taskSlice.actions.completeAll());
+    }, [dispatch]);
     return (
-        <div className="mb-6">
+        <div className="mb-6 flex items-center">
             <select
                 value={currentFilter}
                 onChange={(e) =>
@@ -24,6 +27,13 @@ function TaskFilter() {
                 <option value="active">Active Tasks</option>
                 <option value="completed">Completed Tasks</option>
             </select>
+            <button
+                type="button"
+                className="ml-auto"
+                onClick={handleCompleteAll}
+            >
+                Complete all
+            </button>
         </div>
     );
 }
