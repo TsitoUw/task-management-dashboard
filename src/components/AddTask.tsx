@@ -145,7 +145,7 @@ export default function AddTask() {
 
         reduxDispatch(taskActions.addTask(newTask));
         dispatch({ type: "RESET_FORM" });
-        toast.success("Task added successfully, yay!");
+        toast.success("Tâche ajoutée avec succès, yay !");
     };
 
     const hasErrors = Object.keys(formState.errors).length > 0;
@@ -177,7 +177,9 @@ export default function AddTask() {
                         type="submit"
                         disabled={formState.isSubmitting || hasErrors}
                     >
-                        {formState.isSubmitting ? "Adding..." : "Add Task"}
+                        {formState.isSubmitting
+                            ? "Ajout de la tache..."
+                            : "Ajouter une tache"}
                     </Button>
                 </div>
                 {formState.errors.submit && (

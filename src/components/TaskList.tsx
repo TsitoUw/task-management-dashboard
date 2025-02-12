@@ -20,7 +20,7 @@ function TaskList() {
                 dispatch(taskSlice.actions.setTasks(tasks));
             } catch (error) {
                 let errorMessage = "An unexpected error occurred";
-                toast.error("Error occured while fetching tasks");
+                toast.error("Une erreur s'est produite lors de la récupération des tâches");
 
                 if (error instanceof Error) {
                     errorMessage = error.message;

@@ -26,14 +26,14 @@ const Task = memo(({ id, completed, title }: Task) => {
             dispatch(taskSlice.actions.toggleTask(id));
             console.error(error);
             toast.error(
-                "Updating the task failed! (since API is mock the UI have changed)"
+                "La mise à jour de la tâche a échoué ! (puisque l'API est simulée, mais l'interface utilisateur a changé)"
             );
         }
     }, [dispatch, id, completed]);
     const handleDelete = useCallback(async () => {
         try {
             await taskService.deleteTask(id);
-            toast.success(`Task with id: ${id} have been deleted`);
+            toast.success(`La tâche avec l'id: ${id} a été supprimée`);
             dispatch(taskSlice.actions.removeTask(id));
         } catch (error) {
             console.error(error);
@@ -51,7 +51,7 @@ const Task = memo(({ id, completed, title }: Task) => {
         >
             <div className="flex items-center space-x-2">
                 <Checkbox
-                    id={"pp-" + id}
+                    id={"task-" + id}
                     onCheckedChange={() => {
                         handleToggle();
                     }}
@@ -67,7 +67,7 @@ const Task = memo(({ id, completed, title }: Task) => {
                 </label>
             </div>
             <Button onClick={handleDelete} variant="destructive">
-                Delete
+                Supprimer
             </Button>
         </div>
     );

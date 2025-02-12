@@ -39,10 +39,10 @@ function TaskFilter() {
                     <SelectGroup>
                         <SelectLabel>Select filter</SelectLabel>
 
-                        <SelectItem value="all">All Tasks</SelectItem>
-                        <SelectItem value="active">Active Tasks</SelectItem>
+                        <SelectItem value="all">Tout les tâches</SelectItem>
+                        <SelectItem value="active">Tâches terminées</SelectItem>
                         <SelectItem value="completed">
-                            Completed Tasks
+                            Tâches non terminées
                         </SelectItem>
                     </SelectGroup>
                 </SelectContent>
@@ -54,7 +54,7 @@ function TaskFilter() {
                 className="ml-auto"
                 onClick={handleCompleteAll}
             >
-                Complete all
+                Tout compléter
             </Button>
         </div>
     );
