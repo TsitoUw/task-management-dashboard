@@ -4,7 +4,7 @@ This is my take on the test !
 
 ## Installing dependencies
 
-Use this 'cause I use canary version of shadcn
+Use this 'cause I use react 19 with canary version of shadcn
 
 ``` bash
 npm install --force
