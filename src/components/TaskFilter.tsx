@@ -33,11 +33,11 @@ function TaskFilter() {
                 }
             >
                 <SelectTrigger className="w-[180px]">
-                    <SelectValue placeholder="Select a fruit" />
+                    <SelectValue placeholder="Sélectionnez un filtre" />
                 </SelectTrigger>
                 <SelectContent>
                     <SelectGroup>
-                        <SelectLabel>Select filter</SelectLabel>
+                        <SelectLabel>Sélectionnez un filtre</SelectLabel>
 
                         <SelectItem value="all">Tout les tâches</SelectItem>
                         <SelectItem value="active">Tâches terminées</SelectItem>

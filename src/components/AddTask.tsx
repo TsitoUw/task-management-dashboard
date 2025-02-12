@@ -158,7 +158,7 @@ export default function AddTask() {
                         type="text"
                         value={formState.title}
                         onChange={handleChange}
-                        placeholder="Add new task..."
+                        placeholder="Ajouter une nouvelle tâche..."
                         className={` flex-1
                                 ${
                                     formState.errors.title
@@ -178,8 +178,8 @@ export default function AddTask() {
                         disabled={formState.isSubmitting || hasErrors}
                     >
                         {formState.isSubmitting
-                            ? "Ajout de la tache..."
-                            : "Ajouter une tache"}
+                            ? "Ajout de la tâche..."
+                            : "Ajouter une tâche"}
                     </Button>
                 </div>
                 {formState.errors.submit && (
