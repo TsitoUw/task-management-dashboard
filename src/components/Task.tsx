@@ -3,16 +3,21 @@ import { taskService, type Task } from "@/services/taskService";
 import { useDispatch } from "react-redux";
 import { taskSlice } from "@/store/taskSlice";
 import { toast } from "sonner";
+import { Checkbox } from "./ui/checkbox";
+import { Button } from "./ui/button";
 
 const Task = memo(({ id, completed, title }: Task) => {
     const dispatch = useDispatch();
     const handleToggle = useCallback(async () => {
         try {
+            dispatch(taskSlice.actions.toggleTask(id));
             await taskService.updateTask(id, {
                 completed: !completed,
             });
-            dispatch(taskSlice.actions.toggleTask(id));
         } catch (error) {
+            // change back the layout change on error,
+            // this simulate optimistic render
+            dispatch(taskSlice.actions.toggleTask(id));
             console.error(error);
             toast.error(
                 "Updating the task failed! (since API is mock the UI have changed)"
@@ -38,23 +43,26 @@ const Task = memo(({ id, completed, title }: Task) => {
                 completed ? "bg-green-50" : "bg-white"
             }`}
         >
-            <div className="flex items-center">
-                <input
-                    type="checkbox"
+            <div className="flex items-center space-x-2">
+                <Checkbox
+                    id={"pp-" + id}
+                    onCheckedChange={() => {
+                        handleToggle();
+                    }}
                     checked={completed}
-                    onChange={handleToggle}
-                    className="mr-4"
                 />
-                <span className={completed ? "line-through text-gray-500" : ""}>
+                <label
+                    htmlFor={"pp-" + id}
+                    className={`text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ${
+                        completed ? "line-through text-gray-500" : ""
+                    }`}
+                >
                     {title}
-                </span>
+                </label>
             </div>
-            <button
-                onClick={handleDelete}
-                className="px-3 py-1 text-red-600 border border-red-600 rounded hover:bg-red-50"
-            >
+            <Button onClick={handleDelete} variant="destructive">
                 Delete
-            </button>
+            </Button>
         </div>
     );
 });

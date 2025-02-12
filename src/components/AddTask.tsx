@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { z } from "zod";
 import { taskActions } from "../store/taskSlice";
 import { RootState } from "@/store";
+import { toast } from "sonner";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
 
 // Zod schema for task validation
 const taskSchema = z.object({
@@ -142,6 +145,7 @@ export default function AddTask() {
 
         reduxDispatch(taskActions.addTask(newTask));
         dispatch({ type: "RESET_FORM" });
+        toast.success("Task added successfully, yay!");
     };
 
     const hasErrors = Object.keys(formState.errors).length > 0;
@@ -150,37 +154,36 @@ export default function AddTask() {
         <form onSubmit={handleSubmit} className="mb-6">
             <div className="flex flex-col gap-2">
                 <div className="flex gap-2">
-                    <div className="flex-1">
-                        <input
-                            type="text"
-                            value={formState.title}
-                            onChange={handleChange}
-                            placeholder="Add new task..."
-                            className={`w-full p-2 border rounded ${
-                                formState.errors.title
-                                    ? "border-red-500"
-                                    : "border-gray-300"
-                            }`}
-                            disabled={formState.isSubmitting}
-                        />
-                        {formState.errors.title && (
-                            <div className="mt-1 text-sm text-red-500">
-                                {formState.errors.title[0]}
-                            </div>
-                        )}
-                    </div>
-                    <button
+                    <Input
+                        type="text"
+                        value={formState.title}
+                        onChange={handleChange}
+                        placeholder="Add new task..."
+                        className={` flex-1
+                                ${
+                                    formState.errors.title
+                                        ? "border-red-500"
+                                        : "border-gray-300"
+                                }
+                                `}
+                    />
+
+                    {formState.errors.title && (
+                        <div className="mt-1 text-sm text-red-500">
+                            {formState.errors.title[0]}
+                        </div>
+                    )}
+                    <Button
                         type="submit"
-                        className={`px-4 py-2 text-white bg-blue-600 rounded hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed`}
                         disabled={formState.isSubmitting || hasErrors}
                     >
                         {formState.isSubmitting ? "Adding..." : "Add Task"}
-                    </button>
+                    </Button>
                 </div>
                 {formState.errors.submit && (
-                    <div className="text-red-500 text-sm">
+                    <p className="text-red-500 text-sm">
                         {formState.errors.submit}
-                    </div>
+                    </p>
                 )}
             </div>
         </form>

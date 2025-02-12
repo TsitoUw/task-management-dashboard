@@ -3,6 +3,16 @@ import { taskSlice } from "@/store/taskSlice";
 import { TaskState } from "@/types/task";
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Button } from "./ui/button";
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue,
+} from "./ui/select";
 
 function TaskFilter() {
     const dispatch = useDispatch();
@@ -12,28 +22,40 @@ function TaskFilter() {
     }, [dispatch]);
     return (
         <div className="mb-6 flex items-center">
-            <select
+            <Select
                 value={currentFilter}
-                onChange={(e) =>
+                onValueChange={(value) =>
                     dispatch(
                         taskSlice.actions.setFilter(
-                            e.target.value as TaskState["filter"]
+                            value as TaskState["filter"]
                         )
                     )
                 }
-                className="p-2 border rounded"
             >
-                <option value="all">All Tasks</option>
-                <option value="active">Active Tasks</option>
-                <option value="completed">Completed Tasks</option>
-            </select>
-            <button
+                <SelectTrigger className="w-[180px]">
+                    <SelectValue placeholder="Select a fruit" />
+                </SelectTrigger>
+                <SelectContent>
+                    <SelectGroup>
+                        <SelectLabel>Select filter</SelectLabel>
+
+                        <SelectItem value="all">All Tasks</SelectItem>
+                        <SelectItem value="active">Active Tasks</SelectItem>
+                        <SelectItem value="completed">
+                            Completed Tasks
+                        </SelectItem>
+                    </SelectGroup>
+                </SelectContent>
+            </Select>
+
+            <Button
+                variant="destructive"
                 type="button"
                 className="ml-auto"
                 onClick={handleCompleteAll}
             >
                 Complete all
-            </button>
+            </Button>
         </div>
     );
 }
