@@ -1,12 +1,15 @@
-import { Button } from "./components/ui/button";
+import AddTask from "./components/AddTask";
+import Navbar from "./components/Navbar";
+import TaskList from "./components/TaskList";
 
 function App() {
     return (
         <>
-            <div>
-              <h1>hello world</h1>
-              <Button>Hi</Button>
-            </div>
+            <Navbar />
+            <main className="container mx-auto">
+                <AddTask />
+                <TaskList />
+            </main>
         </>
     );
 }
