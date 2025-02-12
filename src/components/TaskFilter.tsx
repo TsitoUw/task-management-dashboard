@@ -40,9 +40,11 @@ function TaskFilter() {
                         <SelectLabel>Sélectionnez un filtre</SelectLabel>
 
                         <SelectItem value="all">Tout les tâches</SelectItem>
-                        <SelectItem value="active">Tâches terminées</SelectItem>
-                        <SelectItem value="completed">
+                        <SelectItem value="active">
                             Tâches non terminées
+                        </SelectItem>
+                        <SelectItem value="completed">
+                            Tâches terminées
                         </SelectItem>
                     </SelectGroup>
                 </SelectContent>
