@@ -20,7 +20,9 @@ function TaskList() {
                 dispatch(taskSlice.actions.setTasks(tasks));
             } catch (error) {
                 let errorMessage = "An unexpected error occurred";
-                toast.error("Une erreur s'est produite lors de la récupération des tâches");
+                toast.error(
+                    "Une erreur s'est produite lors de la récupération des tâches"
+                );
 
                 if (error instanceof Error) {
                     errorMessage = error.message;
@@ -44,9 +46,11 @@ function TaskList() {
 
     return (
         <div>
-            {filteredTasks.map((task) => (
-                <Task key={task.id} {...task} />
-            ))}
+            {filteredTasks.length !== 0 &&
+                filteredTasks.map((task) => <Task key={task.id} {...task} />)}
+            {filteredTasks.length == 0 && (
+                <p className="text-center py-4">Aucune tâche trouvée</p>
+            )}
         </div>
     );
 }
