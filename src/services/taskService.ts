@@ -23,6 +23,13 @@ export const taskService = {
         const response = await api.get<Task[]>("/todos");
         return response.data;
     },
+    async updateTask(taskId: number, task: Partial<Task>): Promise<Task> {
+        const response = await api.put<Task>(`/todos/${taskId}`, task);
+        return response.data;
+    },
+    async deleteTask(taskId: number): Promise<void> {
+        await api.delete(`/todos/${taskId}`);
+    },
 };
 
 export type { Task, CreateTaskDTO };

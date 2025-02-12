@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit/react";
 import { Task, TaskState } from "@/types/task";
 
 const initialState: TaskState = {

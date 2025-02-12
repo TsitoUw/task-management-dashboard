@@ -4,6 +4,7 @@ import { taskSlice } from "@/store/taskSlice";
 import { taskService } from "@/services/taskService";
 import { useDispatch, useSelector } from "react-redux";
 import Task from "./Task";
+import { toast } from "sonner";
 
 function TaskList() {
     const dispatch = useDispatch();
@@ -19,6 +20,8 @@ function TaskList() {
                 dispatch(taskSlice.actions.setTasks(tasks));
             } catch (error) {
                 let errorMessage = "An unexpected error occurred";
+                toast.error("Error occured while fetching tasks");
+
                 if (error instanceof Error) {
                     errorMessage = error.message;
                 }
